@@ -55,6 +55,18 @@
 GetReportData <- function(query.builder, token, 
                           split_daywise = FALSE,
                           paginate_query = FALSE, delay=0) { 
+  
+  generateEmptyDataFrame <- function(dimensions, metrics) {
+    dimensions <- gsub("ga:", "", dimensions)
+    metrics    <- gsub("ga:", "", metrics)
+    
+    dimensions.df <- as.data.frame(do.call(cbind, lapply(dimensions, function(x) character(length=0))), stringsAsFactors = FALSE)
+    colnames(dimensions.df) <- dimensions
+    metrics.df    <- as.data.frame(do.call(cbind, lapply(metrics, function(x) numeric(length=0))), stringsAsFactors = FALSE)
+    colnames(metrics.df) <- metrics
+    ret <- cbind(dimensions.df, metrics.df)
+    return(as.data.frame(ret))
+  }
 
   query.builder.original <- query.builder
   
@@ -96,7 +108,7 @@ GetReportData <- function(query.builder, token,
     
     if (is.null(total.results)){
       warning("The API returned 0 rows.")
-      return(NULL)
+      return(generateEmptyDataFrame(query.builder.original$dimensions(), query.builder.original$metrics()))
     }
     
     if (total.results < kMaxDefaultRows) {
