@@ -5,7 +5,7 @@
 \title{Query the Google Analytics API for the specified dimensions, metrics and other query parameters}
 \usage{
 GetReportData(query.builder, token, split_daywise = FALSE,
-  paginate_query = FALSE, delay = 0)
+  paginate_query = FALSE, delay = 0, allow.null.result = TRUE)
 }
 \arguments{
 \item{query.builder}{Name of the object created using \code{\link{QueryBuilder}}}

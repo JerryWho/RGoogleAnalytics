@@ -54,7 +54,7 @@
 
 GetReportData <- function(query.builder, token, 
                           split_daywise = FALSE,
-                          paginate_query = FALSE, delay=0) { 
+                          paginate_query = FALSE, delay=0, allow.null.result = TRUE) { 
   
   generateEmptyDataFrame <- function(dimensions, metrics) {
     dimensions <- gsub("ga:", "", dimensions)
@@ -108,7 +108,11 @@ GetReportData <- function(query.builder, token,
     
     if (is.null(total.results)){
       warning("The API returned 0 rows.")
-      return(generateEmptyDataFrame(query.builder.original$dimensions(), query.builder.original$metrics()))
+      if(allow.null.result){
+        return(NULL)
+      }else{
+        return(generateEmptyDataFrame(query.builder.original$dimensions(), query.builder.original$metrics()))
+      }
     }
     
     if (total.results < kMaxDefaultRows) {
