@@ -28,6 +28,10 @@ more Quota. For more on Google Analytics API Quota check
 possibility of getting Quota Eror: Rate Limit Exceeded from the Google Analytics API. 
 This parameter can be used to specify a Time delay (in seconds) between successive 
 queries in order to stay within the Google Analytics API Rate Limits}
+
+\item{allow.null.result}{(default: TRUE) If the result of the query is empty 
+NULL is returned if allow.null.result is TRUE.
+Otherwise an empty data.frame this dimensions and metrics columns is returned.}
 }
 \value{
 dataframe containing the response from the Google Analytics API

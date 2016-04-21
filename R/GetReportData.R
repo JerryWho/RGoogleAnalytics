@@ -26,6 +26,10 @@
 #' This parameter can be used to specify a Time delay (in seconds) between successive 
 #' queries in order to stay within the Google Analytics API Rate Limits
 #' 
+#' @param allow.null.result (default: TRUE) If the result of the query is empty 
+#' NULL is returned if allow.null.result is TRUE.
+#' Otherwise an empty data.frame this dimensions and metrics columns is returned.
+#' 
 #' @examples
 #' \dontrun{
 #' # This example assumes that a token object is already created
