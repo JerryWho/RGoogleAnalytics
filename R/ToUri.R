@@ -20,7 +20,8 @@ ToUri <- function(query.builder,token) {
              "max.results" = query.builder$max.results(),
              "start.index" = query.builder$start.index(),
              "table.id"    = query.builder$table.id(),
-             "access_token" = token$credentials$access_token)
+             "access_token" = token$credentials$access_token,
+             "samplingLevel"= "HIGHER_PRECISION")
   
   uri <- "https://www.googleapis.com/analytics/v3/data/ga?"
   for (name in names(query)) {
@@ -35,7 +36,8 @@ ToUri <- function(query.builder,token) {
                        max.results = "max-results",
                        start.index = "start-index",
                        table.id    = "ids",
-                       access_token = "access_token")
+                       access_token = "access_token",
+                       samplingLevel= "samplingLevel")
 
     if (!is.null(uri.name)) {
       uri <- paste(uri,
